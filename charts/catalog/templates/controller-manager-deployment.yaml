@@ -123,7 +123,9 @@ spec:
           successThreshold: 1
           timeoutSeconds: 5
         {{- end }}
-      {{ if .Values.controllerManager.nodeSelector }}
-      nodeSelector:
-{{ toYaml .Values.controllerManager.nodeSelector | indent 8 }}
-      {{ end }}
+      {{- with .Values.controllerManager.nodeSelector }}
+      nodeSelector: {{ tpl (toYaml .) $ | nindent 8 }}
+      {{- end }}
+      {{- with .Values.controllerManager.tolerations }}
+      tolerations: {{ tpl (toYaml .) $ | nindent 8 }}
+      {{- end }}

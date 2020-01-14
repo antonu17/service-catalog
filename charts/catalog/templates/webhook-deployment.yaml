@@ -81,10 +81,12 @@ spec:
           successThreshold: 1
           timeoutSeconds: 5
         {{- end }}
-      {{ if .Values.webhook.nodeSelector }}
-      nodeSelector:
-{{ toYaml .Values.webhook.nodeSelector | indent 8 }}
-      {{ end }}
+      {{- with .Values.webhook.nodeSelector }}
+      nodeSelector: {{ tpl (toYaml .) $ | nindent 8 }}
+      {{- end }}
+      {{- with .Values.webhook.tolerations }}
+      tolerations: {{ tpl (toYaml .) $ | nindent 8 }}
+      {{- end }}
       volumes:
       - name: service-catalog-webhook-cert
         secret:
