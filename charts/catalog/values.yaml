@@ -118,5 +118,5 @@ cascadingDeletionEnabled: false
 securityContext: {}
 
 migration:
-  enabled: false
+  enabled: true
   storageClassName: default
