@@ -116,3 +116,7 @@ cascadingDeletionEnabled: false
 ## by example :
 ## securityContext: { runAsUser: 1001 }
 securityContext: {}
+
+migration:
+  enabled: false
+  storageClassName: default
